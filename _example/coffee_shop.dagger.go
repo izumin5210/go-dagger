@@ -15,7 +15,9 @@ func buildCoffeeShop(builder *DaggerCoffeeShop_Builder) *DaggerCoffeeShop {
 	coffeeShop.thermosiphonProvider = &Thermosiphon_Factory{
 		heaterProvider: coffeeShop.provideHeaterProvider,
 	}
-	coffeeShop.providePumpProvider = coffeeShop.thermosiphonProvider.(PumpProvider)
+	coffeeShop.providePumpProvider = &Thermosiphon_Pump_Factory{
+		thermosiphonProvider: coffeeShop.thermosiphonProvider,
+	}
 	coffeeShop.coffeeMakerProvider = &CoffeeMaker_Factory{
 		heaterProvider: coffeeShop.provideHeaterProvider,
 		pumpProvider:   coffeeShop.providePumpProvider,
