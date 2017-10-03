@@ -1,4 +1,4 @@
-package main
+package instrument
 
 //dagger:module
 type PumpModule interface {

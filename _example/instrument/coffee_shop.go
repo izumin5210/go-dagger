@@ -1,4 +1,4 @@
-package main
+package instrument
 
 //dagger:singleton
 //dagger:component(modules = {DripCoffeeModule})
