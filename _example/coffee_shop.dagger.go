@@ -9,8 +9,10 @@ type DaggerCoffeeShop struct {
 
 func buildCoffeeShop(builder *DaggerCoffeeShop_Builder) *DaggerCoffeeShop {
 	coffeeShop := &DaggerCoffeeShop{}
-	coffeeShop.provideHeaterProvider = &DripCoffeeModule_ProvideHeaterFactory{
-		module: builder.dripCoffeeModule,
+	coffeeShop.provideHeaterProvider = &Heater_DoubleCheckProvider{
+		provider: &DripCoffeeModule_ProvideHeaterFactory{
+			module: builder.dripCoffeeModule,
+		},
 	}
 	coffeeShop.thermosiphonProvider = &Thermosiphon_Factory{
 		heaterProvider: coffeeShop.provideHeaterProvider,
