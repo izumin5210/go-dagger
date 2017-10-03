@@ -1,17 +1,19 @@
-package main
+package dagger
 
 import (
 	"sync"
+
+	"github.com/izumin5210/go-dagger/_example/instrument"
 )
 
 type Heater_DoubleCheckProvider struct {
-	instance    Heater
+	instance    instrument.Heater
 	provider    HeaterProvider
 	initialized bool
 	sync.Mutex
 }
 
-func (p *Heater_DoubleCheckProvider) Get() Heater {
+func (p *Heater_DoubleCheckProvider) Get() instrument.Heater {
 	if !p.initialized {
 		p.Lock()
 		defer p.Unlock()

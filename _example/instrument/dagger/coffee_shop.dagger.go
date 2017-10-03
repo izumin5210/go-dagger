@@ -1,4 +1,6 @@
-package main
+package dagger
+
+import "github.com/izumin5210/go-dagger/_example/instrument"
 
 type DaggerCoffeeShop struct {
 	provideHeaterProvider HeaterProvider
@@ -27,25 +29,25 @@ func buildCoffeeShop(builder *DaggerCoffeeShop_Builder) *DaggerCoffeeShop {
 	return coffeeShop
 }
 
-func (c *DaggerCoffeeShop) Maker() *CoffeeMaker {
-	return &CoffeeMaker{
+func (c *DaggerCoffeeShop) Maker() *instrument.CoffeeMaker {
+	return &instrument.CoffeeMaker{
 		Heater: c.provideHeaterProvider.Get(),
 		Pump:   c.providePumpProvider.Get(),
 	}
 }
 
 type DaggerCoffeeShop_Builder struct {
-	dripCoffeeModule *DripCoffeeModule
+	dripCoffeeModule *instrument.DripCoffeeModule
 }
 
-func (b *DaggerCoffeeShop_Builder) Build() CoffeeShop {
+func (b *DaggerCoffeeShop_Builder) Build() instrument.CoffeeShop {
 	if b.dripCoffeeModule == nil {
-		b.dripCoffeeModule = &DripCoffeeModule{}
+		b.dripCoffeeModule = &instrument.DripCoffeeModule{}
 	}
 	return buildCoffeeShop(b)
 }
 
-func (b *DaggerCoffeeShop_Builder) DripCoffeeModule(dripCoffeeModule *DripCoffeeModule) *DaggerCoffeeShop_Builder {
+func (b *DaggerCoffeeShop_Builder) DripCoffeeModule(dripCoffeeModule *instrument.DripCoffeeModule) *DaggerCoffeeShop_Builder {
 	b.dripCoffeeModule = dripCoffeeModule
 	return b
 }
