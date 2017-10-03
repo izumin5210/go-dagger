@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	shop := (&dagger.DaggerCoffeeShop_Builder{}).
+	shop := (&dagger.CoffeeShop_Builder{}).
 		DripCoffeeModule(&instrument.DripCoffeeModule{}).
 		Build()
 	shop.Maker().Brew()
