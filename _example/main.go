@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	shop := DaggerCoffeeShop.Builder{}.
+	shop := (&DaggerCoffeeShop_Builder{}).
 		DripCoffeeModule(&DripCoffeeModule{}).
 		Build()
 	shop.Maker().Brew()
