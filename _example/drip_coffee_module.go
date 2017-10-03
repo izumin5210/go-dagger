@@ -1,7 +1,8 @@
 package main
 
-//dagger:modulle(includes = PumpModule.class)
+//dagger:module
 type DripCoffeeModule struct {
+	PumpModule
 }
 
 //dagger:provide
